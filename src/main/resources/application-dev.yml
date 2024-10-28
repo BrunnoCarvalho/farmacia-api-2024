@@ -8,9 +8,12 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: create # validate | update | create | create-drop
+      dialect: org.hibernate.dialect.H2Dialect
     properties:
       hibernate:
-        format_sql: true
+        jdbc.batch_size: 50
+        generate_statistics: true
+        use_sql_comments: true
   h2:
     console:
       enabled: true
@@ -18,6 +21,15 @@ spring:
       settings:
         trace: false
         web-allow-others: false
+        
+logging:
+  level:
+    org:
+      hibernate: DEBUG
+      hibernate.SQL: DEBUG
+      hibernate.type.descriptor.sql.BasicTypeDescriptor: TRACE
+      hibernate.type.descriptor.sql.BasicTypeDescriptor.jdbc: TRACE
+
 springdoc:
   api-docs:
     path: /v3/api-docs

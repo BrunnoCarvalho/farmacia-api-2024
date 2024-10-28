@@ -1,12 +1,14 @@
 package me.dio.farmacia_2024.domain.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,10 +30,10 @@ public class Estoque {
 
     @JsonIgnore
     private LocalDate dataEntrada;
-
+    
     @JsonIgnore
-    @OneToMany(mappedBy = "estoque", cascade = CascadeType.ALL)
-    private List<Lote> lotes;
+    @OneToMany(mappedBy = "estoque", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Lote> lotes = new ArrayList<>();
 
     public Long getId() {
         return id;

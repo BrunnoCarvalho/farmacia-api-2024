@@ -46,9 +46,10 @@ public class LoteServiceImpl implements LoteService {
         if (estoque.getLotes() == null) {
             estoque.setLotes(new ArrayList<>());
         }
+        
+        loteRepository.save(novoLote);
         estoque.getLotes().add(novoLote);
 
-        loteRepository.save(novoLote);
         estoqueRepository.save(estoque);
 
         transacaoService.registrarTransacao(farmaceutico.getNome(), produto.getNome(), produto.getCodigoDeBarras(), quantidade, "ENTRADA");
@@ -128,6 +129,7 @@ public class LoteServiceImpl implements LoteService {
         novoLote.setProduto(produto);
         novoLote.setEstoque(estoque);
 
+        System.out.println("Lote criado: " + novoLote);
         return novoLote;
 
     }

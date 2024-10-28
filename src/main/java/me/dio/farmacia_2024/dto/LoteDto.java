@@ -2,6 +2,7 @@ package me.dio.farmacia_2024.dto;
 import java.time.LocalDate;
 
 public class LoteDto extends FarmaceuticoDto {
+    
     private Long estoqueId;
     private String numeroLote;
     private int quantidade;
